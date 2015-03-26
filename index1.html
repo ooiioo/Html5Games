@@ -17,10 +17,9 @@
 
 <script>
 
-function fmoney(s, n)
+function fmoney(s)
 {
-    n = n > 0 && n <= 20 ? n : 2;
-    s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
+    s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(0) + "";
     var l = s.split(".")[0].split("").reverse(),
         r = s.split(".")[1];
     var t = "";
@@ -31,7 +30,7 @@ function fmoney(s, n)
     return t.split("").reverse().join("") + "." + r;
 }
 
-	var s = fmoney(999999999, 0);
+	var s = fmoney(999999999);
 	console.log(s);
 	
     var nowTime = Date.now();
