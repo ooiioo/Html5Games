@@ -17,6 +17,23 @@
 
 <script>
 
+function fmoney(s, n)
+{
+    n = n > 0 && n <= 20 ? n : 2;
+    s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
+    var l = s.split(".")[0].split("").reverse(),
+        r = s.split(".")[1];
+    var t = "";
+    for(i = 0; i < l.length; i ++ )
+    {
+        t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
+    }
+    return t.split("").reverse().join("") + "." + r;
+}
+
+	var s = fmoney(999999999, 0);
+	console.log(s);
+	
     var nowTime = Date.now();
 
     var str = "jsapi_ticket=sM4AOVdWfPE4DxkXGEs8VAF0Evjzdjm0vzKh_sUw97zozKwaQfesmw97-bSUVDCtxQ5V51Z4KIrjz1g6-ZA5Ww&noncestr=1427274093&timestamp=1427274093&url=http://mp.weixin.qq.com?params=value";
