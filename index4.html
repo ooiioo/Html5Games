@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Test</title>
+
+    <META   HTTP-EQUIV="Pragma"   CONTENT="no-cache">
+    <META   HTTP-EQUIV="Cache-Control"   CONTENT="no-cache">
+    <META   HTTP-EQUIV="Expires"   CONTENT="0">
+</head>
+<body>
+
+<br> V0 </br>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="sha1.js"></script>
+
+
+<script>
+    function setCookie(name,value)
+    {
+        var Days = 30;
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days*24*60*60*1000);
+        document.cookie = name + "="+ value + ";expires=" + exp.toGMTString()+";path=/";
+    }
+
+    function getCookie(name)
+    {
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+        if(arr=document.cookie.match(reg))
+
+            return arr[2];
+        else
+            return null;
+    }
+
+    function delCookie(name)
+    {
+        var exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        var cval=getCookie(name);
+        if(cval!=null)
+            document.cookie= name + "="+cval+";expires="+exp.toGMTString()+";path=/";
+    }
+
+    setCookie("name","hayden");
+    //delCookie("name");
+    alert(getCookie("name"));
+
+</script>
+
+</body>
+</html>
