@@ -44,7 +44,8 @@
             document.cookie= name + "="+cval+";expires="+exp.toGMTString()+";path=/";
     }
 
-    setCookie("name","hayden");
+    //setCookie("name","hayden");
+    delCookie("name");
     alert(getCookie("name"));
 
 </script>
