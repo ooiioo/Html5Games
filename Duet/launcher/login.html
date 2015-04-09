@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<script>
+    function GetUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)
+            return r[2];
+        return null;
+    }
+
+    function GetCookie(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+        if (arr = document.cookie.match(reg))
+
+            return arr[2];
+        else
+            return null;
+    }
+
+    var urlPath = window.location.href;
+    var pos = urlPath.indexOf("login.html");
+    var path = urlPath.substring(0, pos) + "index.html";
+    var loginType = GetUrlParam("loginType");
+
+    var expired = (GetCookie("refreshToken") == null);
+
+    if (expired && loginType != "code") {
+        var navigateURL = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx49ce3f064b234e21&redirect_uri=" + encodeURIComponent(path + "?timestamp=" + Date.now()) + "&response_type=code&scope=snsapi_userinfo&state=78903#wechat_redirect";
+        window.location.href = navigateURL;
+    }
+    else if (loginType == null) {
+        window.location.href = path + "?timestamp=" + Date.now();
+    }
+    else if (loginType == "codeShow") {
+        var navigateURL = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx49ce3f064b234e21&redirect_uri=" + encodeURIComponent(path + window.location.search +"&timestamp=" + Date.now()) + "&response_type=code&scope=snsapi_userinfo&state=78903#wechat_redirect";
+        window.location.href = navigateURL;
+    }
+    else {
+        window.location.href = path + window.location.search + "&timestamp=" + Date.now();
+    }
+</script>
+
+</body>
+</html>
