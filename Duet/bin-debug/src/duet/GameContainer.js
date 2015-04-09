@@ -117,6 +117,7 @@ var duet;
             this.showScoreTimer.removeEventListener(egret.TimerEvent.TIMER, this.showScorePanel, this);
             this.showScoreTimer.stop();
             // 显示成绩
+            DataManager.GetInstance().Record(GameConfig.score);
             Director.gameScene().panelManager.openOverPanel();
         };
         //创建物理世界
@@ -128,7 +129,7 @@ var duet;
             //设置重力参数
             this._world.gravity = [0, 0];
             //监听碰撞消息
-            this._world.on(this._world.beginContactEvent.type, this.collisionFunc, this);
+            //this._world.on(this._world.beginContactEvent.type, this.collisionFunc, this);
             //运行物理世界
             egret.Ticker.getInstance().register(this.runPhysicsWorld, this);
         };
